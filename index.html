@@ -8,7 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ballet&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <style>
+    .event-grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .event-card { aspect-ratio: 1 / 1; container-type: inline-size; display: flex; flex-direction: column; min-height: 0; overflow-wrap: anywhere; padding: 24px; }
+    .event-card .card-label { font-size: clamp(.6rem, 4.5cqw, .75rem); margin-top: clamp(16px, 12cqw, 58px); }
+    .event-card h3 { font-size: clamp(1rem, 10cqw, 2.2rem); margin-bottom: clamp(8px, 3cqw, 15px); }
+    .event-card .event-meta { font-size: clamp(.65rem, 5cqw, .95rem); line-height: 1.45; }
+    @media (max-width: 480px) {
+      .event-grid { display: block; }
+      .event-card { aspect-ratio: auto; min-height: 300px; }
+      .event-card .card-label { margin-top: 70px; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -43,7 +57,7 @@
       <div class="section-shell countdown-content">
         <div>
           <p class="eyebrow eyebrow-light">Μετράμε αντίστροφα</p>
-          <h2>Τα λέμε κάτω από<br>τον ήλιο της Άνδρου.</h2>
+          <h2><span>Τα λέμε κάτω από</span><span>τον ήλιο</span><span>της Άνδρου.</span></h2>
         </div>
         <div class="countdown" aria-label="Αντίστροφη μέτρηση για τον γάμο">
           <div><strong id="days">--</strong><span>μέρες</span></div>
@@ -72,30 +86,30 @@
     <section class="details section-shell" id="details">
       <div class="section-heading centered reveal">
         <p class="eyebrow"><span class="eyebrow-dot"></span> Κράτησε την ημερομηνία</p>
-        <h2>Όλα όσα<br>χρειάζεται να ξέρεις.</h2>
+        <h2><span>Όλα όσα</span><span>χρειάζεται να ξέρεις.</span></h2>
       </div>
       <div class="event-grid">
         <article class="event-card event-pre reveal">
           <span class="card-number">01</span>
           <p class="card-label">Πριν από τον γάμο</p>
           <h3>Να γνωριστούμε</h3>
-          <p class="event-meta">Ένα πρώτο ποτό πριν από τη μεγάλη μέρα.<br>Να γνωριστούμε ήρεμα και να τα πούμε. Για το μετά, δεν ξέρουμε πόσο ήρεμοι θα είμαστε.</p>
+          <p class="event-meta">Ένα πρώτο ποτό πριν από τη μεγάλη μέρα.<br>Να γνωριστούμε ήρεμα, να τα πούμε και να κρατήσουμε τις ισορροπίες μας. Για το μετά, δεν εγγυόμαστε ούτε την ηρεμία ούτε τα βήματά μας.</p>
           <span class="card-mark">+</span>
         </article>
-        <article class="event-card event-yellow reveal delay-one">
+        <a class="event-card event-yellow event-link reveal delay-one" href="https://www.google.com/maps/search/Θεοσκέπαστη+Άνδρος" target="_blank" rel="noreferrer">
           <span class="card-number">02</span>
           <p class="card-label">Το μυστήριο</p>
           <h3>Άνδρος</h3>
           <p class="event-meta">Κυριακή, 18 Ιουλίου 2027<br>Η ώρα και η ακριβής τοποθεσία σύντομα</p>
           <span class="card-mark">+</span>
-        </article>
-        <article class="event-card event-coral reveal delay-one">
+        </a>
+        <a class="event-card event-yellow event-link reveal delay-one" href="https://www.google.com/maps/search/Μέθεξης+Άνδρος" target="_blank" rel="noreferrer">
           <span class="card-number">03</span>
           <p class="card-label">Η γιορτή</p>
-          <h3>Άνδρος</h3>
-          <p class="event-meta">Φαγητό, ποτό και χορός<br>Οι λεπτομέρειες σύντομα</p>
+          <h3>Μέθεξης</h3>
+          <p class="event-meta">Μέθεξης, Άνδρος<br>Φαγητό, ποτό και χορός<br><strong>Κουμπάροι:</strong> Δημοσθένης Ζαΐρης και Αντωνοπούλου Δανάη</p>
           <span class="card-mark">*</span>
-        </article>
+        </a>
         <article class="event-card event-teal reveal delay-two">
           <span class="card-number">04</span>
           <p class="card-label">Η Άνδρος</p>
@@ -119,6 +133,9 @@
           <label>Θα είσαι μαζί μας;
             <select name="attendance" required>
               <option value="" disabled selected>Επίλεξε απάντηση</option>
+              <option>Δεν θα το έχανα με τίποτα</option>
+              <option>ΠΡΟΦΑΝΩΣ, θα είμαστε εκεί</option>
+              <option>Άστο πάνω μου</option>
               <option>Ναι, θα είμαι εκεί</option>
               <option>Δυστυχώς, δεν θα μπορέσω</option>
             </select>
@@ -131,14 +148,9 @@
               <option>3 άτομα</option>
               <option>4 άτομα</option>
               <option>5 άτομα</option>
-              <option>6 άτομα</option>
-              <option>7 άτομα</option>
-              <option>8 άτομα</option>
-              <option>9 άτομα</option>
-              <option>10 άτομα</option>
             </select>
           </label>
-          <label>Ονόματα παρέας <span class="optional">Προαιρετικό</span><textarea name="guest_names" rows="2" placeholder="Γράψε τα ονόματα όσων θα έρθετε μαζί"></textarea></label>
+          <div class="guest-fields" id="guest-fields" aria-live="polite"></div>
           <label>Κάτι που πρέπει να ξέρουμε; <span class="optional">Προαιρετικό</span><textarea name="note" rows="3" placeholder="Διατροφικές προτιμήσεις, συνοδός, τραγούδι..."></textarea></label>
           <button class="button button-light" type="submit">Στείλε απάντηση <span aria-hidden="true">→</span></button>
           <p class="form-note" id="form-message" role="status"></p>
@@ -161,6 +173,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>

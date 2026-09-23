@@ -23,6 +23,37 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+const partySizeSelect = document.querySelector('select[name="party_size"]');
+const guestFields = document.querySelector("#guest-fields");
+
+function renderGuestFields() {
+  const partySize = Number.parseInt(partySizeSelect.value, 10) || 0;
+  guestFields.replaceChildren();
+
+  if (!partySize) {
+    return;
+  }
+
+  const title = document.createElement("p");
+  title.className = "guest-fields-title";
+  title.textContent = "Ονόματα καλεσμένων";
+  guestFields.append(title);
+
+  for (let index = 1; index <= partySize; index += 1) {
+    const label = document.createElement("label");
+    label.textContent = `Άτομο ${index}`;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = `guest_name_${index}`;
+    input.placeholder = `Όνομα ατόμου ${index}`;
+    input.required = true;
+    label.append(input);
+    guestFields.append(label);
+  }
+}
+
+partySizeSelect.addEventListener("change", renderGuestFields);
+
 document.querySelector("#rsvp-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#form-message");
