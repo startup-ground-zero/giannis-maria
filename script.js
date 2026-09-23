@@ -20,8 +20,21 @@ function updateCountdown() {
   countdownUnits.seconds.textContent = String(seconds).padStart(2, "0");
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+if (countdownUnits.days) {
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+const menuToggle = document.querySelector(".menu-toggle");
+const siteHeader = document.querySelector(".site-header");
+
+if (menuToggle && siteHeader) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = siteHeader.classList.toggle("menu-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Κλείσιμο μενού" : "Άνοιγμα μενού");
+  });
+}
 
 const partySizeSelect = document.querySelector('select[name="party_size"]');
 const guestFields = document.querySelector("#guest-fields");
@@ -52,9 +65,14 @@ function renderGuestFields() {
   }
 }
 
-partySizeSelect.addEventListener("change", renderGuestFields);
+if (partySizeSelect && guestFields) {
+  partySizeSelect.addEventListener("change", renderGuestFields);
+}
 
-document.querySelector("#rsvp-form").addEventListener("submit", (event) => {
+const rsvpForm = document.querySelector("#rsvp-form");
+
+if (rsvpForm) {
+  rsvpForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#form-message");
   const formData = new FormData(event.currentTarget);
@@ -62,4 +80,5 @@ document.querySelector("#rsvp-form").addEventListener("submit", (event) => {
   const partySize = formData.get("party_size");
   message.textContent = `Ευχαριστούμε, ${guestName}. Η απάντησή σου για ${partySize} καταχωρήθηκε.`;
   event.currentTarget.reset();
-});
+  });
+}
