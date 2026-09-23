@@ -116,6 +116,7 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .event-link:hover { box-shadow: 8px 8px 0 var(--coral); transform: translate(-3px, -3px); }
 .guest-fields { display: grid; gap: 14px; }
 .guest-fields-title { font-size: .69rem; font-weight: 700; letter-spacing: .1em; margin: 4px 0 -4px; text-transform: uppercase; }
+.guest-fields-person { color: var(--yellow); font-size: .7rem; font-weight: 700; letter-spacing: .1em; margin: 8px 0 -6px; text-transform: uppercase; }
 @media (min-width: 481px) and (max-width: 700px) { .details .section-heading h2 { font-size: clamp(2.5rem, 7vw, 4rem); }.details .section-heading h2 span { white-space: nowrap; } }
 
 .active-link { color: var(--coral); }
