@@ -38,7 +38,17 @@ if (menuToggle && siteHeader) {
 
 const partySizeSelect = document.querySelector('select[name="party_size"]');
 const guestFields = document.querySelector("#guest-fields");
+const attendanceSelect = document.querySelector('select[name="attendance"]');
+const contactNameInput = document.querySelector('input[name="name"]');
+const attendanceStatus = document.querySelector("#attendance-status");
 const whatsappNumbers = ["306986320398"];
+const copyRsvpButton = document.querySelector("#copy-rsvp");
+const contactActions = document.querySelector("#contact-actions");
+const whatsappButton = document.querySelector("#whatsapp-rsvp");
+const viberButton = document.querySelector("#viber-rsvp");
+const smsButton = document.querySelector("#sms-rsvp");
+const rsvpForm = document.querySelector("#rsvp-form");
+let latestRsvpMessage = "";
 
 function renderGuestFields() {
   const partySize = Number.parseInt(partySizeSelect.value, 10) || 0;
@@ -79,36 +89,115 @@ function renderGuestFields() {
 
     guestFields.append(firstNameLabel, surnameLabel);
   }
+
+  syncSoloGuestName();
+  updateContactButtons();
+}
+
+function syncAttendanceState() {
+  const declined = attendanceSelect && attendanceSelect.value.includes("Δυστυχώς");
+
+  if (attendanceStatus) {
+    attendanceStatus.textContent = attendanceSelect.value
+      ? declined ? "❌" : "✅"
+      : "";
+    attendanceStatus.classList.toggle("is-declined", declined);
+    attendanceStatus.classList.toggle("is-accepted", Boolean(attendanceSelect.value) && !declined);
+  }
+
+  if (declined) {
+    partySizeSelect.value = "";
+    guestFields.replaceChildren();
+  }
+
+  partySizeSelect.disabled = declined;
+  partySizeSelect.required = !declined;
+  guestFields.hidden = declined;
+
+  guestFields.querySelectorAll("input").forEach((input) => {
+    input.disabled = declined;
+    input.required = !declined;
+  });
+
+  updateContactButtons();
+}
+
+function syncSoloGuestName() {
+  if (!partySizeSelect || partySizeSelect.value !== "1" || !contactNameInput) return;
+  const nameParts = contactNameInput.value.trim().split(/\s+/).filter(Boolean);
+  const firstName = guestFields.querySelector('input[name="guest_first_name_1"]');
+  const surname = guestFields.querySelector('input[name="guest_surname_1"]');
+  if (firstName) firstName.value = nameParts.shift() || "";
+  if (surname) surname.value = nameParts.join(" ");
+  updateContactButtons();
 }
 
 if (partySizeSelect && guestFields) {
   partySizeSelect.addEventListener("change", renderGuestFields);
 }
 
-const rsvpForm = document.querySelector("#rsvp-form");
+if (attendanceSelect) {
+  attendanceSelect.addEventListener("change", syncAttendanceState);
+}
 
-if (rsvpForm) {
-  rsvpForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const message = document.querySelector("#form-message");
-  const formData = new FormData(event.currentTarget);
-  const guestName = formData.get("name");
-  const partySize = formData.get("party_size");
+if (contactNameInput) {
+  contactNameInput.addEventListener("input", syncSoloGuestName);
+}
+
+function buildRsvpMessage() {
+  const formData = new FormData(rsvpForm);
+  const partySize = Number.parseInt(formData.get("party_size"), 10);
   const guests = [];
-  for (let index = 1; index <= Number.parseInt(partySize, 10); index += 1) {
+  for (let index = 1; index <= partySize; index += 1) {
     guests.push(`${formData.get(`guest_first_name_${index}`)} ${formData.get(`guest_surname_${index}`)}`);
   }
-  const whatsappText = [
+  return [
     "Νέα απάντηση γάμου:",
-    `Όνομα επικοινωνίας: ${guestName}`,
+    `Όνομα επικοινωνίας: ${formData.get("name")}`,
+    `Κινητό: ${formData.get("phone")}`,
     `Απάντηση: ${formData.get("attendance")}`,
-    `Άτομα: ${partySize}`,
     `Καλεσμένοι: ${guests.join(", ")}`,
     `Σημείωση: ${formData.get("note") || "-"}`
   ].join("\n");
-  const whatsappUrl = `https://wa.me/${whatsappNumbers[0]}?text=${encodeURIComponent(whatsappText)}`;
-  window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  message.textContent = `Ευχαριστούμε, ${guestName}. Η απάντησή σου είναι έτοιμη για αποστολή στο WhatsApp.`;
-  event.currentTarget.reset();
+}
+
+function updateContactButtons() {
+  if (!rsvpForm) return;
+  const isValid = rsvpForm.checkValidity();
+  latestRsvpMessage = isValid ? buildRsvpMessage() : "";
+  [whatsappButton, viberButton, smsButton, copyRsvpButton].forEach((button) => {
+    if (button) button.disabled = !isValid;
+  });
+}
+
+if (rsvpForm) {
+  rsvpForm.addEventListener("input", updateContactButtons);
+  rsvpForm.addEventListener("change", updateContactButtons);
+}
+
+if (whatsappButton) {
+  whatsappButton.addEventListener("click", () => {
+    const whatsappUrl = `https://wa.me/${whatsappNumbers[0]}?text=${encodeURIComponent(latestRsvpMessage)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  });
+}
+
+if (viberButton) {
+  viberButton.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(latestRsvpMessage);
+    window.location.href = `viber://chat?number=%2B${whatsappNumbers[0]}`;
+  });
+}
+
+if (smsButton) {
+  smsButton.addEventListener("click", () => {
+    window.location.href = `sms:+${whatsappNumbers[0]}?body=${encodeURIComponent(latestRsvpMessage)}`;
+  });
+}
+
+if (copyRsvpButton) {
+  copyRsvpButton.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(latestRsvpMessage);
+    document.querySelector("#form-message").textContent = "Η απάντηση αντιγράφηκε. Μπορείς να τη στείλεις με SMS ή email.";
   });
 }

@@ -130,7 +130,7 @@
         </div>
         <form id="rsvp-form" class="rsvp-form">
           <label>Ονοματεπώνυμο<input type="text" name="name" placeholder="Το όνομά σου" required></label>
-          <label>Email<input type="email" name="email" placeholder="you@example.com" required></label>
+          <label>Κινητό τηλέφωνο<input type="tel" name="phone" placeholder="+30 69XXXXXXXX" autocomplete="tel" required></label>
           <label>Θα είσαι μαζί μας;
             <select name="attendance" required>
               <option value="" disabled selected>Επίλεξε απάντηση</option>
@@ -140,20 +140,29 @@
               <option>Ναι, θα είμαι εκεί</option>
               <option>Δυστυχώς, δεν θα μπορέσω</option>
             </select>
+            <span class="attendance-status" id="attendance-status" aria-live="polite"></span>
           </label>
           <label>Πόσα άτομα θα έρθετε;
             <select name="party_size" required>
               <option value="" disabled selected>Επίλεξε αριθμό ατόμων</option>
-              <option>1 άτομο</option>
-              <option>2 άτομα</option>
-              <option>3 άτομα</option>
-              <option>4 άτομα</option>
-              <option>5 άτομα</option>
+              <option value="1">Δεν χρειάζομαι παρέα</option>
+              <option value="2">2 άτομα</option>
+              <option value="3">3 άτομα</option>
+              <option value="4">4 άτομα</option>
+              <option value="5">5 άτομα</option>
             </select>
           </label>
           <div class="guest-fields" id="guest-fields" aria-live="polite"></div>
           <label>Κάτι που πρέπει να ξέρουμε; <span class="optional">Προαιρετικό</span><textarea name="note" rows="3" placeholder="Διατροφικές προτιμήσεις, συνοδός, τραγούδι..."></textarea></label>
-          <button class="button button-light" type="submit">Στείλε απάντηση στον Γιάννη &amp; τη Μαρία <span aria-hidden="true">→</span></button>
+          <div class="contact-actions" id="contact-actions">
+            <p class="contact-actions-title">Στείλε την απάντησή σου στον Γιάννη &amp; τη Μαρία</p>
+            <div class="contact-buttons">
+              <button class="contact-button" id="whatsapp-rsvp" type="button" disabled>WhatsApp</button>
+              <button class="contact-button" id="viber-rsvp" type="button" disabled>Viber</button>
+              <button class="contact-button" id="sms-rsvp" type="button" disabled>SMS</button>
+            </div>
+            <button class="fallback-button" id="copy-rsvp" type="button" disabled>Αντιγραφή απάντησης</button>
+          </div>
           <p class="form-note" id="form-message" role="status"></p>
         </form>
       </div>
