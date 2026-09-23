@@ -147,6 +147,8 @@ if (contactNameInput) {
 function buildRsvpMessage() {
   const formData = new FormData(rsvpForm);
   const partySize = Number.parseInt(formData.get("party_size"), 10);
+  const attendance = formData.get("attendance");
+  const attendanceMark = attendance.includes("Δυστυχώς") ? "❌" : "✅";
   const guests = [];
   for (let index = 1; index <= partySize; index += 1) {
     guests.push(`${formData.get(`guest_first_name_${index}`)} ${formData.get(`guest_surname_${index}`)}`);
@@ -155,7 +157,7 @@ function buildRsvpMessage() {
     "Νέα απάντηση γάμου:",
     `Όνομα επικοινωνίας: ${formData.get("name")}`,
     `Κινητό: ${formData.get("phone")}`,
-    `Απάντηση: ${formData.get("attendance")}`,
+    `Απάντηση: ${attendanceMark} ${attendance}`,
     `Καλεσμένοι: ${guests.join(", ")}`,
     `Σημείωση: ${formData.get("note") || "-"}`
   ].join("\n");
