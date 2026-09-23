@@ -26,7 +26,9 @@ setInterval(updateCountdown, 1000);
 document.querySelector("#rsvp-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#form-message");
-  const guestName = new FormData(event.currentTarget).get("name");
-  message.textContent = `Ευχαριστούμε, ${guestName}. Η απάντησή σου καταχωρήθηκε.`;
+  const formData = new FormData(event.currentTarget);
+  const guestName = formData.get("name");
+  const partySize = formData.get("party_size");
+  message.textContent = `Ευχαριστούμε, ${guestName}. Η απάντησή σου για ${partySize} καταχωρήθηκε.`;
   event.currentTarget.reset();
 });

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <header class="site-header">
@@ -16,6 +16,7 @@
     <nav class="nav-links" aria-label="Κύρια πλοήγηση">
       <a href="#story">Η ιστορία μας</a>
       <a href="#details">Η μέρα</a>
+      <a href="directions.html">Πώς θα έρθετε</a>
       <a href="#rsvp">Απάντηση</a>
     </nav>
     <a class="nav-cta" href="#rsvp">Θα είσαι μαζί μας;</a>
@@ -26,10 +27,11 @@
       <div class="hero-copy reveal">
         <p class="eyebrow"><span class="eyebrow-dot"></span> Μια γιορτή στο νησί</p>
         <h1>Γιάννης <em>&</em><br>Μαρία</h1>
+        <div class="hero-date"><strong>18.07.2027</strong><span>Κυριακή · Άνδρος</span></div>
         <p class="hero-intro">Δύο άνθρωποι, μια όμορφη μέρα και ένα ολόκληρο νησί που περιμένει να γιορτάσει μαζί μας.</p>
         <div class="hero-actions">
           <a class="button button-dark" href="#details">Δες τη μέρα μας <span aria-hidden="true">↓</span></a>
-          <p class="date-note">Κυριακή, 18 Ιουλίου 2027<br><strong>Άνδρος, Ελλάδα</strong></p>
+          <p class="date-note"><strong>Άνδρος, Ελλάδα</strong></p>
         </div>
       </div>
       <div class="hero-art reveal delay-one" role="img" aria-label="Ο Γιάννης και η Μαρία στην παραλία">
@@ -54,14 +56,14 @@
 
     <section class="story section-shell" id="story">
       <div class="section-heading reveal">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Η αρχή του για πάντα</p>
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Η αρχή του για πάντα, στην Άνδρο</p>
         <h2>Βρήκαμε τον<br><em>δρόμο μας.</em></h2>
       </div>
       <div class="story-grid">
         <div class="story-image reveal delay-one"><img src="photo_both_I.jpg" alt="Ο Γιάννης και η Μαρία γιορτάζουν μαζί"></div>
         <div class="story-copy reveal delay-two">
           <p>Παντρευόμαστε και δεν θα θέλαμε τίποτα περισσότερο από το να έχουμε τους αγαπημένους μας ανθρώπους δίπλα μας.</p>
-          <p>Ελάτε μαζί μας στην Άνδρο για μια μέρα γεμάτη θαλασσινό αέρα, όμορφα χρώματα, καλό φαγητό και χορό μέχρι το βράδυ.</p>
+          <p>Ελάτε μαζί μας στην Άνδρο για μια μέρα γεμάτη θαλασσινό αέρα, λευκά σοκάκια, καλό φαγητό και χορό μέχρι το βράδυ.</p>
           <div class="signature">Γ <span>&</span> Μ</div>
         </div>
       </div>
@@ -73,25 +75,32 @@
         <h2>Όλα όσα<br>χρειάζεται να ξέρεις.</h2>
       </div>
       <div class="event-grid">
-        <article class="event-card event-yellow reveal">
+        <article class="event-card event-pre reveal">
           <span class="card-number">01</span>
+          <p class="card-label">Πριν από τον γάμο</p>
+          <h3>Να γνωριστούμε</h3>
+          <p class="event-meta">Ένα πρώτο ποτό πριν από τη μεγάλη μέρα.<br>Να γνωριστούμε ήρεμα και να τα πούμε. Για το μετά, δεν ξέρουμε πόσο ήρεμοι θα είμαστε.</p>
+          <span class="card-mark">+</span>
+        </article>
+        <article class="event-card event-yellow reveal delay-one">
+          <span class="card-number">02</span>
           <p class="card-label">Το μυστήριο</p>
           <h3>Άνδρος</h3>
           <p class="event-meta">Κυριακή, 18 Ιουλίου 2027<br>Η ώρα και η ακριβής τοποθεσία σύντομα</p>
           <span class="card-mark">+</span>
         </article>
         <article class="event-card event-coral reveal delay-one">
-          <span class="card-number">02</span>
+          <span class="card-number">03</span>
           <p class="card-label">Η γιορτή</p>
           <h3>Άνδρος</h3>
           <p class="event-meta">Φαγητό, ποτό και χορός<br>Οι λεπτομέρειες σύντομα</p>
           <span class="card-mark">*</span>
         </article>
         <article class="event-card event-teal reveal delay-two">
-          <span class="card-number">03</span>
-          <p class="card-label">Το νησί</p>
+          <span class="card-number">04</span>
+          <p class="card-label">Η Άνδρος</p>
           <h3>Μείνετε λίγο</h3>
-          <p class="event-meta">Θα μοιραστούμε σύντομα ιδέες για διαμονή και μετακίνηση.</p>
+          <p class="event-meta">Από τη Χώρα μέχρι τις παραλίες, θα μοιραστούμε σύντομα τα αγαπημένα μας σημεία.</p>
           <span class="card-mark">~</span>
         </article>
       </div>
@@ -114,6 +123,22 @@
               <option>Δυστυχώς, δεν θα μπορέσω</option>
             </select>
           </label>
+          <label>Πόσα άτομα θα έρθετε;
+            <select name="party_size" required>
+              <option value="" disabled selected>Επίλεξε αριθμό ατόμων</option>
+              <option>1 άτομο</option>
+              <option>2 άτομα</option>
+              <option>3 άτομα</option>
+              <option>4 άτομα</option>
+              <option>5 άτομα</option>
+              <option>6 άτομα</option>
+              <option>7 άτομα</option>
+              <option>8 άτομα</option>
+              <option>9 άτομα</option>
+              <option>10 άτομα</option>
+            </select>
+          </label>
+          <label>Ονόματα παρέας <span class="optional">Προαιρετικό</span><textarea name="guest_names" rows="2" placeholder="Γράψε τα ονόματα όσων θα έρθετε μαζί"></textarea></label>
           <label>Κάτι που πρέπει να ξέρουμε; <span class="optional">Προαιρετικό</span><textarea name="note" rows="3" placeholder="Διατροφικές προτιμήσεις, συνοδός, τραγούδι..."></textarea></label>
           <button class="button button-light" type="submit">Στείλε απάντηση <span aria-hidden="true">→</span></button>
           <p class="form-note" id="form-message" role="status"></p>

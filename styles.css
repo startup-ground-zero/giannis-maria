@@ -16,7 +16,7 @@ html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
 a { color: inherit; text-decoration: none; }
 .section-shell { width: min(1160px, calc(100% - 64px)); margin: 0 auto; }
-.site-header { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: 1280px; padding: 26px 32px; position: relative; z-index: 2; }
+.site-header { align-items: center; backdrop-filter: blur(10px); background: rgba(241, 238, 231, .94); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; margin: 0 auto; max-width: 1280px; padding: 18px 32px; position: sticky; top: 0; z-index: 10; }
 .wordmark, .footer-content > span:first-child { font-size: 1.05rem; font-weight: 700; letter-spacing: .05em; }
 .wordmark span, .signature span { color: var(--coral); font-family: var(--serif); font-size: 1.35em; font-weight: 500; }
 .nav-links { display: flex; gap: 30px; margin-left: 80px; }
@@ -72,3 +72,29 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .event-teal { color: var(--white); }
 .site-footer { background: var(--ink); color: var(--white); }
 .footer-content b { color: var(--yellow); }
+
+.hero-date { align-items: baseline; border-bottom: 1px solid var(--coral); display: flex; gap: 16px; margin: 28px 0 0; padding-bottom: 12px; width: fit-content; }
+.hero-date strong { color: var(--coral); font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
+.hero-date span { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.event-grid { grid-auto-rows: minmax(340px, 1fr); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.event-card { min-width: 0; overflow-wrap: anywhere; }
+.event-grid { grid-auto-rows: auto; }
+.event-card { aspect-ratio: 1 / 1; display: flex; flex-direction: column; min-height: 0; padding: 24px; }
+.card-label { margin-top: clamp(35px, 6vw, 92px); }
+.event-card h3 { font-size: clamp(1.55rem, 3vw, 2.2rem); }
+.event-meta { font-size: clamp(.68rem, .9vw, .83rem); line-height: 1.5; }
+.event-pre { background: var(--ink); color: var(--white); }
+.event-pre .card-mark { color: var(--yellow); }
+@media (max-width: 760px) { .hero-date { margin-top: 24px; }.hero-date strong { font-size: 2.5rem; }.event-grid { display: block; grid-auto-rows: auto; }.event-card { aspect-ratio: auto; min-height: 300px; }.card-label { margin-top: 70px; }.event-card h3 { font-size: 2.2rem; }.event-meta { font-size: .83rem; line-height: 1.7; } }
+
+.active-link { color: var(--coral); }
+.travel-hero { align-items: end; display: flex; justify-content: space-between; min-height: 470px; padding-bottom: 100px; padding-top: 100px; }
+.travel-hero h1 { font-family: var(--serif); font-size: clamp(4rem, 8vw, 7rem); font-weight: 500; letter-spacing: -.05em; line-height: .9; margin: 0; }
+.travel-hero h1 em { color: var(--coral); font-style: italic; }
+.travel-lead { font-size: 1.05rem; line-height: 1.7; margin: 32px 0 0; max-width: 510px; }
+.travel-stamp { align-items: center; border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); display: flex; flex-direction: column; height: 170px; justify-content: center; transform: rotate(8deg); width: 170px; }
+.travel-stamp span { font-family: var(--serif); font-size: 4rem; line-height: .8; }.travel-stamp small { font-size: .6rem; font-weight: 700; letter-spacing: .15em; line-height: 1.4; margin-top: 13px; text-align: center; }
+.route-section { padding-bottom: 140px; position: relative; }.route-line { border-left: 1px solid var(--coral); bottom: 170px; left: 71px; opacity: .55; position: absolute; top: 0; }.route-step { align-items: start; display: grid; gap: 42px; grid-template-columns: 80px minmax(0, 590px); padding-bottom: 62px; position: relative; }.route-step:last-child { padding-bottom: 0; }.step-number { align-items: center; background: var(--paper); border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); display: flex; font-family: var(--serif); height: 55px; justify-content: center; position: relative; width: 55px; z-index: 1; }.route-step h2 { font-size: clamp(2.5rem, 5vw, 4rem); }.route-step p:not(.card-label) { font-size: .98rem; line-height: 1.8; margin: 16px 0 20px; }.text-link { border-bottom: 1px solid var(--coral); color: var(--coral); font-size: .7rem; font-weight: 700; letter-spacing: .1em; padding-bottom: 5px; text-transform: uppercase; }.text-link span { font-size: 1.1rem; margin-left: 10px; }
+.tickets-section { background: var(--teal); color: var(--white); padding: 110px 0; }.tickets-grid { align-items: center; display: grid; gap: 12%; grid-template-columns: 1fr .8fr; }.tickets-section h2 { font-size: clamp(3.2rem, 6vw, 5.5rem); }.tickets-section p:not(.eyebrow) { font-size: .98rem; line-height: 1.8; max-width: 500px; }.fare-card { background: var(--yellow); color: var(--ink); padding: 35px; }.fare-card h3 { font-family: var(--serif); font-size: 2.3rem; font-weight: 500; line-height: 1; margin: 70px 0 15px; }.fare-card p { font-size: .9rem !important; line-height: 1.7 !important; }.fare-status { border-top: 1px solid rgba(37, 42, 37, .35); display: block; font-size: .65rem; font-weight: 700; letter-spacing: .12em; margin-top: 30px; padding-top: 15px; text-transform: uppercase; }
+.travel-note { padding-bottom: 140px; padding-top: 140px; }.travel-note h2 { font-size: clamp(3.5rem, 7vw, 6rem); }.travel-note > p:not(.eyebrow) { font-family: var(--serif); font-size: 1.3rem; margin: 35px 0; }
+@media (max-width: 760px) { .travel-hero { align-items: start; display: block; min-height: auto; padding-bottom: 75px; padding-top: 75px; }.travel-hero h1 { font-size: clamp(3.8rem, 17vw, 5.5rem); }.travel-stamp { height: 125px; margin: 45px 0 0 auto; width: 125px; }.travel-stamp span { font-size: 3rem; }.route-section { padding-bottom: 85px; }.route-line { left: 27px; }.route-step { gap: 22px; grid-template-columns: 55px minmax(0, 1fr); padding-bottom: 48px; }.route-step h2 { font-size: 2.8rem; }.tickets-section { padding: 80px 0; }.tickets-grid { display: block; }.fare-card { margin-top: 45px; }.travel-note { padding-bottom: 85px; padding-top: 85px; }.travel-note > p:not(.eyebrow) { font-size: 1.05rem; } }
