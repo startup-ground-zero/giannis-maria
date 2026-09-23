@@ -99,7 +99,7 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .details > .section-heading .eyebrow { justify-content: center; }
 .details > .section-heading h2 { align-items: center; display: flex; flex-direction: column; }
 .details > .section-heading h2 span { display: block; margin-left: 0; margin-right: 0; text-align: center; }
-.story .section-heading h2 { font-family: "Ballet", "Playpen Sans", cursive; font-weight: 400; letter-spacing: 0; }
+.story .section-heading h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -.04em; }
 .route-note { color: var(--coral); display: block; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .fare-status { border-top-color: rgba(82, 100, 90, .35); }
 .event-link { color: inherit; text-decoration: none; }
